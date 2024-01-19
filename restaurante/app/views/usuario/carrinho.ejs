@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho</title>
+</head>
+<body>
+    <h1>Carrinho</h1>
+    <%- include('../../public/menu.html') %>
+    <table>
+        <th>Nome</th>
+        <th>Preço</th>
+        <th>Quantidade</th>
+        <th></th>
+        <tr>
+            <% for (let i=0; i < carrinho.length; i++){%>
+                <td>
+                    <%= carrinho[i]["produtos"].descricao %>
+                </td>
+                <td>
+                    <%= carrinho[i]["produtos"].preco %>
+                </td>
+                    <%= carrinho[i].quantidade %>
+                <td>
+                    <a href="/produto/editar/<%=carrinho[i]["produto"].id %>">Editar</a>
+                    <a href="/produto/editar/<%=carrinho[i]["produto"].id %>">Remover</a>
+                </td>
+            <% } %>
+        </tr>
+    </table>
+    <h3>Total: R$<%= valortotal %></h3>
+    <form action="/produto/finalizar" method="post">
+        <select name="id_forma_pagamento">
+            <option value="Cartão"></option>
+            <option value="Boleto"></option>
+            <option value="Pix"></option>
+        </select>
+    </form>
+    <input type="submit" value="Finalizar Pedido">
+</body>
+</html>
